@@ -1,3 +1,4 @@
+; vim:fileencoding=utf-8:ft=nasm:foldmethod=marker
 ;     _   ___ _____ 
 ;    (_) /   |  _  |
 ;     _ / /| | |/' |
@@ -15,43 +16,6 @@
 ; >> This program creates a file and
 ; writes a line of text to it using
 ; the OPEN syscall.
-
-; USING OPEN AS CREAT {{{
-;
-; >> Some places in c documantation
-; indicate that the CREAT syscall
-; should not be used and is only kept
-; for compatibility with older 
-; code. Trying to replicate it's 
-; behavior with the more generalized
-; OPEN syscall might be challenging
-; as documentation is unclear in some 
-; aspects. 
-;
-; >> There are 2 things to keep
-; in mind: the flags, and the mode.
-; The *flags* dictate the behavior of
-; the syscall itself and are passed
-; through rsi. The *mode* is used
-; when the O_CREAT flag is set, and
-; dictates information about the file
-; to be created, such as permissions.
-;
-; >> To find the numeric valus of the
-; flags, you may try to print them
-; with a c program or hunt them in the 
-; system files. In my system, they
-; are 10101, in decimal base, to match
-; CREAT. More about that on the data
-; section comments.
-;
-; >> The mode can be found in the
-; dos, but it might not be clear that
-; those are octal numbers. To get
-; the same beehavior as the touch
-; command in linux, 644o should work.
-;
-; }}}
 
 ;  MOUNTING AND LINKING {{{
 ;   
@@ -189,3 +153,39 @@ section .bss
     str_line:   resb len_line
     fd_new:     resq 1
 
+; USING OPEN AS CREAT {{{
+;
+; >> Some places in c documantation
+; indicate that the CREAT syscall
+; should not be used and is only kept
+; for compatibility with older 
+; code. Trying to replicate it's 
+; behavior with the more generalized
+; OPEN syscall might be challenging
+; as documentation is unclear in some 
+; aspects. 
+;
+; >> There are 2 things to keep
+; in mind: the flags, and the mode.
+; The *flags* dictate the behavior of
+; the syscall itself and are passed
+; through rsi. The *mode* is used
+; when the O_CREAT flag is set, and
+; dictates information about the file
+; to be created, such as permissions.
+;
+; >> To find the numeric valus of the
+; flags, you may try to print them
+; with a c program or hunt them in the 
+; system files. In my system, they
+; are 10101, in decimal base, to match
+; CREAT. More about that on the data
+; section comments.
+;
+; >> The mode can be found in the
+; dos, but it might not be clear that
+; those are octal numbers. To get
+; the same beehavior as the touch
+; command in linux, 644o should work.
+;
+; }}}
