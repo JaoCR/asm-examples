@@ -170,11 +170,12 @@ section .bss
 ; The *flags* dictate the behavior of
 ; the syscall itself and are passed
 ; through rsi. The *mode* is used
-; when the O_CREAT flag is set, and
+; when the O_CREAT flag is set,
 ; dictates information about the file
 ; to be created, such as permissions.
+; Mode shoud be placed in rdx.
 ;
-; >> To find the numeric valus of the
+; >> To find the numeric values of the
 ; flags, you may try to print them
 ; with a c program or hunt them in the 
 ; system files. In my system, they
@@ -183,9 +184,9 @@ section .bss
 ; section comments.
 ;
 ; >> The mode can be found in the
-; dos, but it might not be clear that
+; docs, but it might not be clear that
 ; those are octal numbers. To get
-; the same beehavior as the touch
+; the same behavior as the touch
 ; command in linux, 644o should work.
 ;
 ; }}}
