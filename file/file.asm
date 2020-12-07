@@ -36,7 +36,6 @@ _start: nop
         ; locate line feed 
 cname:  xor rax, rax
         mov bl, 10
-
 .loop:  mov cl, byte[rax + str_name]
         cmp bl, cl
         je  dellf
