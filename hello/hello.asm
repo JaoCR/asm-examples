@@ -12,9 +12,19 @@
 ;
 ;  --- x86_64 nasm assembly: Hello World! ---
 
+
 ; >> This program writes "Hello, World!" to
 ; stdout.
 
+
+;  COMPILATION AND LINKAGE:
+;   
+;  $ yasm -g dwarf2 -felf64 hello.asm -o temp.o 
+;  $ ld temp.o -o hello
+;  $ rm temp.o
+;  
+;  (the "-g dwarf2" can be changed to just "-g" on nasm,
+;  or removed if debugging is not needed)
 
 global _start
 
