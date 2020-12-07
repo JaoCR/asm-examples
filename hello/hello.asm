@@ -28,22 +28,21 @@
 
 global _start
 
-
 section .text
 
-_start:
+_start: nop
 
-    ; write message to stdout 
-    mov rax, SYS_WRITE
-    mov rdi, FD_STDOUT 
-    mov rsi, str_msg 
-    mov rdx, len_msg
-    syscall
+        ; write message to stdout 
+        mov rax, SYS_WRITE
+        mov rdi, FD_STDOUT 
+        mov rsi, str_msg 
+        mov rdx, len_msg
+        syscall
 
-    ; exit program
-    mov rax, SYS_EXIT
-    xor rdi, rdi
-    syscall
+        ; exit program
+        mov rax, SYS_EXIT
+        xor rdi, rdi
+        syscall
 
 
 section .data
