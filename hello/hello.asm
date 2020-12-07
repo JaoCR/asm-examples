@@ -1,3 +1,4 @@
+; vim:fileencoding=utf-8:ft=nasm:foldmethod=marker
 ;     _   ___ _____ 
 ;    (_) /   |  _  |
 ;     _ / /| | |/' |
@@ -17,7 +18,7 @@
 ; stdout.
 
 
-;  COMPILATION AND LINKAGE:
+;  MOUNTING AND LINKING {{{
 ;   
 ;  $ yasm -g dwarf2 -felf64 hello.asm -o temp.o 
 ;  $ ld temp.o -o hello
@@ -25,6 +26,8 @@
 ;  
 ;  (the "-g dwarf2" can be changed to just "-g" on nasm,
 ;  or removed if debugging is not needed)
+;
+; }}}
 
 global _start
 
