@@ -13,10 +13,8 @@
 ;
 ;  --- x86_64 nasm assembly: Hello World! ---
 
-
 ; >> This program writes "Hello, World!" to
 ; stdout.
-
 
 ;  MOUNTING AND LINKING {{{
 ;   
