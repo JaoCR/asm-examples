@@ -116,11 +116,11 @@ section .data
     FD_STDOUT:  equ 1
 
     ; flags for OPEN
-    O_FLAGS:    equ 00010101
+    O_FLAGS:    equ 1101o
     ;;;;;;;;
     ; made by or'ing the flags:
     ; O_WRONLY | O_CREAT  | O_TRUNC
-    ; 00000001 | 00000100 | 00010000
+    ;  0001o   |  0100o   |  1000o
 
     ; mode for OPEN (linux default)
     S_MODE:     equ 644o
@@ -153,6 +153,7 @@ section .bss
     str_line:   resb len_line
     fd_new:     resq 1
 
+
 ; USING OPEN AS CREAT {{{
 ;
 ; >> Some places in c documantation
@@ -179,14 +180,16 @@ section .bss
 ; flags, you may try to print them
 ; with a c program or hunt them in the 
 ; system files. In my system, they
-; are 10101, in decimal base, to match
-; CREAT. More about that on the data
-; section comments.
+; are 1101o, to match CREAT. More 
+; about that on the data section 
+; comments.
 ;
 ; >> The mode can be found in the
-; docs, but it might not be clear that
-; those are octal numbers. To get
-; the same behavior as the touch
-; command in linux, 644o should work.
+; docs. To get the same behavior as
+; the touch command in linux, 644o 
+; should work.
+;
+; >> Both flags and mode are passed
+; in octal base.
 ;
 ; }}}
