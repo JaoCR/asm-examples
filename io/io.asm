@@ -13,7 +13,6 @@
 ;
 ;  --- x86_64 nasm assembly: stdio example ---
 
-
 ; >> This program captures a keypress and
 ; writes text to stdout depending on it.
 
