@@ -1,3 +1,4 @@
+; vim:fileencoding=utf-8:ft=nasm:foldmethod=marker
 ;     _   ___ _____ 
 ;    (_) /   |  _  |
 ;     _ / /| | |/' |
@@ -10,36 +11,29 @@
 ;  j40     : 11399628#USP
 ;  made_in : Sao_Carlos, SP, BR, 2020_12
 ;
-;  --- x86_64 nasm assembly: stdio example! ---
+;  --- x86_64 nasm assembly: stdio example ---
+
+
+; >> This program captures a keypress and
+; writes text to stdout depending on it.
+
+;  MOUNTING AND LINKING {{{
+;   
+;  $ yasm -g dwarf2 -felf64 io.asm -o temp
+;  $ ld temp -o io
+;  $ rm temp
+;  
+;  (the "-g dwarf2" can be changed to just "-g" on nasm,
+;  or removed if debugging is not needed)
 ;
-;  heavily inspired by these 2 threads:
+; }}}
+
+; WHERE I LEARNED {{{ 
 ;
 ; <https://stackoverflow.com/questions/32193374/wait-for-keypress-assembly-nasm-linux>
 ; <https://stackoverflow.com/questions/27365528/how-do-i-wait-for-a-keystroke-interrupt-with-a-syscall-on-linux>
-
-
-;  ABSTRACT:
 ;
-;  IOCTL is a syscall that we can use to
-;  control the IO on our linux terminal. In
-;  this case we get a data structure called 
-;  termios, that holds some settings of the
-;  io. Then, we modify 2 places in it, telling
-;  it to allow us to read the stdin byte per
-;  byte, and not to echo the pressed keys,
-;  so that only our output is printed. Then
-;  without needing to wait for a return press,
-;  we capture the first key typed, and print
-;  conditional output based on it.
-
-
-;  COMPILATION AND LINKAGE:
-;   
-;  $ yasm -g dwarf2 -felf64 io.asm -o temp; ld temp -o io; rm temp
-;  
-;  (the "-g dwarf2" can be changed to just "-g" on nasm, or removed
-;  if debugging is not needed)
-
+; }}}
 
 global _start
 
@@ -154,6 +148,18 @@ segment .bss
     ; stdin configuration data 
     termios:    resb 36
 
-    
-
-
+;  HOW TO CAPTURE A KEYPRESS {{{
+;
+;  >> IOCTL is a syscall that we can use to
+;  control the IO on our linux terminal. In
+;  this case we get a data structure called 
+;  termios, that holds some settings of the
+;  io. Then, we modify 2 places in it, telling
+;  it to allow us to read the stdin byte per
+;  byte, and not to echo the pressed keys,
+;  so that only our output is printed. Then
+;  without needing to wait for a return press,
+;  we capture the first key typed, and print
+;  conditional output based on it.
+;
+;  }}}
