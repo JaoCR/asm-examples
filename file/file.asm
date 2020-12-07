@@ -136,5 +136,5 @@ section .bss
 
     str_name:   resb len_name
     str_line:   resb len_line
-    fd_new:     resb 1
+    fd_new:     resq 1
 
